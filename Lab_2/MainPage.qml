@@ -145,7 +145,7 @@ Page {
                     ]
                 }
             }*/
-            Rectangle {
+            /*Rectangle {
                 property int size: 300
                 id: rect
                 color: "black";
@@ -158,48 +158,42 @@ Page {
                     NumberAnimation { target: rect; property: "y"; to: 300; duration: 1000 }
                     NumberAnimation { target: rect; property: "size"; to: 400; duration: 1000 }
                 }
-                /*PropertyAnimation on size{
-                    id: anim
-                    from: size
-                    to: 400
-                    duration: 2000
-                    running: false
-                }
-                NumberAnimation on y {
-                    from: 0
-                    to: 200
-                    duration: 1000
-                    onRunningChanged: {
-                        anim.running = true;
-                    }
-                }*/
+            }*/
 
-
-                /*SequentialAnimation {
-                    id: seqAnim
-                    NumberAnimation {
-                        target: rect;
-                        properties: "y"
-                        from: 0
-                        to: 200
-                        duration: 1000
-                        running: true
-                    }
-
-                    PropertyAnimation {
-                        target: rect;
-                        properties: "width, height"
-                        from:300
-                        to: 100
-                        duration: 0
-                        running: true
-                    }
-                }
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: seqAnim.running=true
-                }*/
-            }
         //}
+    }
+    Item {
+        Button {
+            text: "Push me"
+            onClicked: {dialog.open()}
+        }
+        Dialog {
+           id: dialog
+           Column {
+               anchors.fill: parent
+               width: parent.width
+               //spacing: Theme.paddingMedium
+               DialogHeader { }
+               Row {
+                   width: parent.width
+                   height: 200
+                   TextField {
+                       id: textField1
+                       width: parent.width/2
+                   }
+                   TextField {
+                       id: textField2
+                       width: parent.width/2
+                   }
+               }
+           }
+           onAccepted: {
+               var num1, num2;
+               num1 = parseInt(textField1.text.toString());
+               num2 = parseInt(textField2.text.toString());
+               var sum = num1+num2;
+               console.log("Sum is " + sum);
+           }
+        }
     }
 }
