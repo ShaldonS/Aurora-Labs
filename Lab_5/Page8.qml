@@ -10,8 +10,8 @@ Page {
 
 
         ConfigurationGroup {
-            id: conf_gtoup
-            path: ""
+            id: conf_group
+            path: "/path"
         }
 
         Column {
@@ -31,8 +31,8 @@ Page {
                     text: "Save"
                     onClicked: {
                         var key = text_field.text;
-                        value1.value = key;
-                        console.log(value1.value + " " + key)
+                        conf_group.setValue("key1", key);
+                        console.log(conf_group.value("key1") + " " + key)
                     }
                 }
             }
@@ -45,8 +45,8 @@ Page {
                     description: "Description"
                     onCheckedChanged: {
                         var key = text_switch.checked ? "/On" : "/Off"
-                        value2.value = key
-                        console.log(value2.value + " " + key)
+                        conf_group.setValue("key2", key);
+                        console.log(conf_group.value("key2") + " " + key)
                     }
                 }
             }
