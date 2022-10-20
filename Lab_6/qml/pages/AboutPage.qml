@@ -18,6 +18,11 @@ Page {
             key: "cnt_pop"
         }
 
+        ConfigurationGroup {
+            id: conf_group
+            path: "/path"
+        }
+
         signal pageStack(int cnt_push, int cnt_pop)
 
         onPageStack: {
@@ -32,9 +37,11 @@ Page {
                    text: "Push"
                    onClicked: {
                        pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
-                       var val = cnt_push.value + 1;
-                       cnt_push.value = val;
-                       task_7.pageStack(cnt_push.value, cnt_pop.value)
+                       var key = conf_group.value("push") + 1;
+                       conf_group.setValue("push", key);
+                       var push_val = conf_group.value("push")
+                       var pop_val = conf_group.value("pop")
+                       task_7.pageStack(push_val, pop_val)
                    }
                }
             }
@@ -44,9 +51,16 @@ Page {
                    text: "Pop"
                    onClicked: {
                        pageStack.pop(pageStack.current_page)
-                       var val = cnt_pop.value + 1;
-                       cnt_pop.value = val;
-                       task_7.pageStack(cnt_push.value, cnt_pop.value)
+                       var key = conf_group.value("pop") + 1;
+                       var key_log = conf_group.value("pop")
+                       if(!key_log) {
+                           console.log("Hello")
+                       }
+
+                       conf_group.setValue("pop", key);
+                       var push_val = conf_group.value("push")
+                       var pop_val = conf_group.value("pop")
+                       task_7.pageStack(push_val, pop_val)
                    }
                }
             }
