@@ -28,7 +28,6 @@ void list_of_string::popList() {
     }*/
 }
 
-
 QString list_of_string::getAllStrings() {
     return allStrings;
 }
